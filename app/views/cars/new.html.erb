@@ -1,0 +1,122 @@
+<div class="container">
+  <h1>Novo Carro</h1>
+
+  <% if @car.errors.any? %>
+    <div class="error-messages">
+      <h2>Erros encontrados:</h2>
+      <ul>
+        <% @car.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @car, class: "car-form") do |form| %>
+    <div class="form-group">
+      <%= form.label :model %>
+      <%= form.text_field :model, placeholder: "Modelo do Carro", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :year %>
+      <%= form.number_field :year, placeholder: "Ano do Carro", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :color %>
+      <%= form.text_field :color, placeholder: "Cor do Carro", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :is_selling %>
+      <%= form.select :is_selling, [["A venda", true], ["Vendido", false]], {}, class: "form-control" %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Salvar", class: "btn btn-primary" %>
+      <%= link_to "Voltar", root_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .error-messages {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .error-messages h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .error-messages ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .car-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+</style> 
